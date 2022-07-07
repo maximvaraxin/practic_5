@@ -1,11 +1,12 @@
 ﻿/*
- *  Задача 32: Напишите программу замена элементов массива: положительные элементы замените на соответствующие отрицательные, и наоборот.
- *  [-4, -8, 8, 2] -> [4, 8, -8, -2]
+ *   Задача 33: Задайте массив. Напишите программу, которая определяет, присутствует ли заданное число в массиве.
+ *   4; массив [6, 7, 19, 345, 3] -> нет
+ *   -3; массив [6, 7, 19, 345, 3] -> да
  */
 
 
 
-namespace App_2
+namespace App_3
 {
     class Program
     {
@@ -13,14 +14,16 @@ namespace App_2
         {   
             Console.Write($"Введите длину массива: ");
             int len = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write($"Введите значение элемента для поиска: ");
+            int elem = Convert.ToInt32(Console.ReadLine());
 
             int[] mass = GetRandomMass( len );
 
             Console.Write($"Массив: ");
             PrintMass(mass);
             
-            ReverseElements( ref mass );
-            PrintMass(mass); 
+            Console.WriteLine( FindElement( mass, elem ) ); 
         }
 
         // заполняет массив рандомными в диапазоне -9 : 9
@@ -48,25 +51,18 @@ namespace App_2
             Console.WriteLine();
         }
         
-        // реверс знаков элементов массива
-        static void ReverseElements( ref int[] mass )
+        // проверяет наличие элемента в массиве
+        static string FindElement( int[] mass, int elem )
         {   
-            int[] result = new int[ mass.Length ];
+            string result = string.Empty;
+            int count = 0;
 
             for (int i = 0; i < mass.Length; i++)
-			{
-                if ( mass[i] < 0 )
-	            {
-                    result[i] = Math.Abs(mass[i]);
-	            }
-                else
-                {
-                    result[i] = -mass[i];
-                }
+			{   
+                count = ( mass[i] == elem ) ? count+=1 : count = count;
 			}
 
-            mass = result;
-        }
-        
+            return result = ( count > 0 ) ? $"элемент найден" : $"элемент не найден";
+        }    
     }
 }
