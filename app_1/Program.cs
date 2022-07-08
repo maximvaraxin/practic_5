@@ -19,8 +19,8 @@ namespace App_1
             Console.Write($"Массив: ");
             PrintMass(mass);
             
-            Console.WriteLine($"Cумма отрицательных: { SumElementNegative(mass) }");
-            Console.WriteLine($"Cумма отрицательных: { SumElement(mass) }");
+            Console.WriteLine($"Cумма отрицательных элементов: { SumElementNegative(mass) }");
+            Console.WriteLine($"Cумма отрицательных элементов: { SumElement(mass) }");
             
         }
 

@@ -23,6 +23,7 @@ namespace App_3
             Console.Write($"Массив: ");
             PrintMass(mass);
             
+            Console.WriteLine($"-------------");
             Console.WriteLine( FindElement( mass, elem ) ); 
         }
 

@@ -20,6 +20,7 @@ namespace App_2
             PrintMass(mass);
             
             ReverseElements( ref mass );
+            Console.Write($"Массив(реверс знаков элементов): ");
             PrintMass(mass); 
         }
 
