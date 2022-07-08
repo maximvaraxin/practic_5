@@ -1,12 +1,13 @@
 ﻿/*
- *   Задача 37: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. Результат запишите в новом массиве.
+ *   Задача 37: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д.
+ *   Результат запишите в новом массиве.
  *   [1 2 3 4 5] -> 5 8 3
  *   [6 7 3 6] -> 36 21
  */
 
 
 
-namespace App_4
+namespace App_5
 {
     class Program
     {
@@ -15,12 +16,13 @@ namespace App_4
             Console.Write($"Введите длину массива: ");
             int len = Convert.ToInt32(Console.ReadLine());
 
-            double[] mass = GetRandomMass( len );
-
+            int[] mass = GetRandomMass( len );
             Console.Write($"Массив: ");
-            PrintMass(mass);
-            Console.WriteLine();
-            Console.WriteLine( $" { СompositionElements( ref mass ) } "); 
+            PrintMass( mass );
+
+            int[] result = ResMass( mass );
+            Console.Write($"Произведение пар чисел в одномерном массиве: ");
+            PrintMass( result );
         }
 
         // заполняет массив рандомными в диапазоне 10 : 99
@@ -48,21 +50,31 @@ namespace App_4
             Console.WriteLine();
         }
         
-        // определяет коичество элементов массива в диапазоне [10,99]
-        static int[] СompositionElements( ref int[] mass )
+        // возвращает произведение пар чисел массива
+        static int[] ResMass( int[] mass )
         {   
-            int count = 0;
-            int[] reversMass = new int[mass.Length];
+             int[] resultMass = new int[mass.Length / 2 + 1];
+             int count = 0;
 
-            for (double i = 0; i < Math.Ceiling(mass.Length) / 2; i++)
-			{
-                ( reversMass[i], mass[mass.Length - ( i + 1 )] ) = ( mass[mass.Length - ( i + 1 )], reversMass[i] );
-			
-  
-                Console.Write($" { reversMass[i] } ");
-            }
-            
-            return reversMass;
+             if ( mass.Length % 2 != 0)
+             {   
+                while( count < -(-mass.Length / 2))
+                {
+                    resultMass[count] = mass[count] * mass[mass.Length - ( count + 1 )];
+                    count+=1;
+                }
+                resultMass[count] = mass[count];             
+             }
+             else
+             {  
+                while( count < -(-mass.Length / 2))
+                {
+                    resultMass[count] = mass[count] * mass[mass.Length - ( count + 1 )];
+                    count++;
+                }  
+             }
+
+            return resultMass;
         }    
     }
 }
